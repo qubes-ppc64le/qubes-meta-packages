@@ -4,6 +4,8 @@
 %define local_dist_name fedora
 %endif
 
+%define backend_vmm @BACKEND_VMM@
+
 Name:		qubes-vm-meta-packages
 Version:	@VERSION@
 Release:	1%{?dist}
@@ -21,8 +23,10 @@ Summary:    Meta package with packages required in Qubes VM
 Requires:   qubes-core-agent
 Requires:   qubes-core-agent-systemd
 Requires:   qubes-gui-agent
+%if x%{?backend_vmm} == xxen
 Requires:   xen-runtime
 Obsoletes:  xen-qubes-vm < 2001:4.9
+%endif
 
 %description -n qubes-vm-dependencies
 This package depends on packages required to be installed in Qubes VM.
